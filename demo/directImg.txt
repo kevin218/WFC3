@@ -1,0 +1,9 @@
+ie3t01bzq_ima.fits
+ie3t02d1q_ima.fits
+ie3t03e4q_ima.fits
+ie3t04f0q_ima.fits
+ie3t05fsq_ima.fits
+ie3t06gkq_ima.fits
+ie3t07hcq_ima.fits
+ie3t08i4q_ima.fits
+ie3t09iwq_ima.fits
