@@ -5,7 +5,6 @@ import models
 import orbit
 import smoothing
 from trquad import trquad
-#reload(smoothing)
 
 def setupmodel(model, ind):
    """

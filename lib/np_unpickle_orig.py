@@ -8,8 +8,12 @@ def unpickle_old_pyfits(fn):
     correctly adapts pyfits files pre 2.3 to the new module structure.
     """
     
-    import cPickle
-    from cPickle import Unpickler
+    try:
+        import cPickle
+        from cPickle import Unpickler
+    except:
+        import _pickle as cPickle
+        from _pickle import Unpickler
     import imp,sys
 
     def fg(modname,classname):        
@@ -47,7 +51,10 @@ def unpickle_old_pyfits(fn):
         return objs
     
 def pickle_fn(objlist,fn):
-    import cPickle
+    try:
+        import cPickle
+    except:
+        import _pickle as cPickle
     
     print(objlist,fn)
     f = open(fn,'w')

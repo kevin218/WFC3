@@ -6,7 +6,7 @@
 #affecting the timing of the secondary eclipse.
 import math
 import numpy as np
-#import models
+import models
 import scipy.optimize
 
 G = 6.674e-11

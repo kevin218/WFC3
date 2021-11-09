@@ -54,7 +54,7 @@ def pickle_fn(objlist,fn):
     f = open(fn,'w')
     try:
         for o in objlist:
-            _pickle.dump(o,f,protocol=cPickle.HIGHEST_PROTOCOL)
+            _pickle.dump(o,f,protocol=_pickle.HIGHEST_PROTOCOL)
     finally:
         f.close()
     

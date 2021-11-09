@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import scipy.interpolate as spi
 import scipy.signal as sps
 import gaussian as g
-# reload(g)
 import smooth
 
 # STEP 3: Fit sky background with out-of-spectra data
@@ -157,7 +156,7 @@ def fitbg2(dataim, mask, bgmask, deg=1, threshold=5, isrotate=False, isplots=Fal
     mask2   = mask*bgmask
     if deg < 0:
         # Calculate median background of entire frame
-        bg  += np.median(data[np.where(mask2)])
+        bg  += np.median(dataim[np.where(mask2)])
     elif deg == None :
         # No background subtraction
         pass

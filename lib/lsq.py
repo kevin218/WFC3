@@ -1,6 +1,7 @@
 
 
 import scipy.optimize as op
+import numpy as np
 
 def modelfunc(freepars, params, pmin, pmax, sigma):
     params[ifreepars] = freepars

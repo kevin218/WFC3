@@ -274,7 +274,7 @@ def old_gaussianguess(y, x=None, mask=None):
   """
 
   if y.ndim != 1 :
-    raise(ArrayShapeError, "y must be 1D, for now.")
+    raise(AssertionError, "y must be 1D, for now.")
 
   if x == None :
     x = np.indices(y.shape)[0]
@@ -283,7 +283,7 @@ def old_gaussianguess(y, x=None, mask=None):
       oldshape = x.shape
       x.shape  = y.shape
     elif x.shape != y.shape :
-      raise(ArrayShapeError, "x must have same shape as y (and be sorted).")
+      raise(AssertionError, "x must have same shape as y (and be sorted).")
       
   # Default mask:
   if mask == None:

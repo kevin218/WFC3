@@ -190,9 +190,9 @@ def interp2d(inten, grav, temp, wgrav, wtemp, log=None, kf=None):
     # FINDME: this only works if the low indices are both 0 and we're not
     # at temps where Kurucz starts skipping gravities...
     if kg[ihigrav] < wgrav.min():   
-      	print 'kurucz_inten.interp: wgrav ' + str(wgrav.min()) + ' higher than ' + str(kg[ihigrav]) + ', see FINDME in code to fix.'
+      	print('kurucz_inten.interp: wgrav ' + str(wgrav.min()) + ' higher than ' + str(kg[ihigrav]) + ', see FINDME in code to fix.')
     if kt[ihitemp] < wtemp.min():   
-      	print 'kurucz_inten.interp: wtemp ' + str(wtemp.min()) + ' higher than ' + str(kt[ihitemp]) + ', see FINDME in code to fix.'
+      	print('kurucz_inten.interp: wtemp ' + str(wtemp.min()) + ' higher than ' + str(kt[ihitemp]) + ', see FINDME in code to fix.')
     kf = np.reshape(inten[0:ngrav * ntemp,:], (ntemp, ngrav, nwav))
 
     # calculate the indices of the parameters we want
@@ -353,23 +353,23 @@ def interp(inten, grav, temp, wgrav, wtemp, log=None, kf=None):
    # FINDME: this only works if the low indices are both 0 and we're not
    # at temps where Kurucz starts skipping gravities...
    if kg[ihigrav] < wgrav:   
-      	print 'kurucz_inten.interp: wgrav ' + str(wgrav) + ' higher than ' + str(kg[ihigrav]) + ', see FINDME in code to fix.'
+      print('kurucz_inten.interp: wgrav ' + str(wgrav) + ' higher than ' + str(kg[ihigrav]) + ', see FINDME in code to fix.')
    if kt[ihitemp] < wtemp:   
-      	print 'kurucz_inten.interp: wtemp ' + str(wtemp) + ' higher than ' + str(kt[ihitemp]) + ', see FINDME in code to fix.'
+      print('kurucz_inten.interp: wtemp ' + str(wtemp) + ' higher than ' + str(kt[ihitemp]) + ', see FINDME in code to fix.')
    kf = np.reshape(inten[0:ngrav * ntemp,:], (ntemp, ngrav, nwav))
    
    # calculate the indices of the parameters we want
    itemp, igrav = np.mgrid[kt[0]:kt[-1]+1:250,kg[0]:kg[-1]+0.1:0.5]
    
    if (log is not None):   
-      	kf = np.log(kf)
+      kf = np.log(kf)
    
    for i in range(nwav):
-	tck = interpolate.bisplrep(itemp, igrav, kf[:,:,i], kx=3, ky=3)
-	iinten[i] = interpolate.bisplev(wtemp, wgrav, tck)
+      tck = interpolate.bisplrep(itemp, igrav, kf[:,:,i], kx=3, ky=3)
+      iinten[i] = interpolate.bisplev(wtemp, wgrav, tck)
    
    if (log is not None):   
-      	iinten = exp(iinten)
+      iinten = exp(iinten)
    
    return iinten
 
@@ -495,13 +495,13 @@ def read(filename, freq=None):
    header    = np.zeros(len(filetxt), int)
    startwave = 0
    for i in range(len(filetxt)):
-	if filetxt[i].startswith("TEFF") == True:
-		head.append(filetxt[i])
-		temp[i]   = float(filetxt[i][ 5:12])
-		grav[i]   = float(filetxt[i][22:29])
-		header[i] = i
-	elif filetxt[i].endswith("END") == True:
-		startwave = i + 1
+      if filetxt[i].startswith("TEFF") == True:
+         head.append(filetxt[i])
+         temp[i]   = float(filetxt[i][ 5:12])
+         grav[i]   = float(filetxt[i][22:29])
+         header[i] = i
+      elif filetxt[i].endswith("END") == True:
+         startwave = i + 1
 
    temp   = temp  [np.where(temp   !=  0)]
    grav   = grav  [np.where(grav   != -1)]
@@ -514,8 +514,8 @@ def read(filename, freq=None):
    k = 0
    string = ''.join(filetxt[startwave:header[0]])
    for j in range(0,len(string),10):
-	wave[k] = float(string[j:j+10])
-	k += 1
+      wave[k] = float(string[j:j+10])
+      k += 1
 
    wave = wave[np.where(wave != 0)] * 1e-9  # convert nm to meters
    nwavl = wave.size
@@ -526,13 +526,13 @@ def read(filename, freq=None):
 
    #LOOP OVER MODELS
    for i in range(0, nmod):
-   	k = 0
-   	string1 = ''.join(filetxt[header[i]+1      :header[i]+nline+1  ])
-	string2 = ''.join(filetxt[header[i]+nline+1:header[i]+2*nline+1])
-	for j in range(0,len(string1),10):
-		inten[i,k]   = float(string1[j:j+10])
-		nainten[i,k] = float(string2[j:j+10])
-		k += 1
+      k = 0
+      string1 = ''.join(filetxt[header[i]+1      :header[i]+nline+1  ])
+      string2 = ''.join(filetxt[header[i]+nline+1:header[i]+2*nline+1])
+      for j in range(0,len(string1),10):
+         inten[i,k]   = float(string1[j:j+10])
+         nainten[i,k] = float(string2[j:j+10])
+         k += 1
 
    # convert Eddington fluxes to brightnesses, CGS (erg cm-2) -> MKS (J m-2)
    inten   *= 4. * 1e-3

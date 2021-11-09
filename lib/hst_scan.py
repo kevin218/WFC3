@@ -4,7 +4,7 @@ import scipy.interpolate as spi
 import scipy.ndimage.interpolation as spni
 import gaussian as g
 import matplotlib.pyplot as plt
-import sys, optspex, smooth, julday, centroid
+import os, sys, optspex, smooth, julday, centroid
 import hst_scan as hst
 import sort_nicely as sn
 import astropy.io.fits as pf

@@ -1145,7 +1145,7 @@ def setupmodel(model, ind):
         parname.insert(ind.sx,     'Intra-pixel, Linear Term in x')
         parname.insert(ind.sipc,   'Intra-pixel, Constant Term')
         #DEFINE INTRA-PIXEL MODEL
-        myfuncs.append(sexticip)
+        myfuncs.append(mc.sexticip)
         saveext.append('6ip')
         functype.append('ippoly')
     elif model[i] == 'sexticipc':
@@ -1209,7 +1209,7 @@ def setupmodel(model, ind):
         #DEFINE NAMES
         parname.insert(ind.rad,    'Intra-pixel, Radius')
         #DEFINE INTRA-PIXEL MODEL
-        myfuncs.append(medianip)
+        myfuncs.append(mc.medianip)
         saveext.append('mip')
         functype.append('ipmap')
     elif model[i] == 'nnint':
@@ -1529,7 +1529,7 @@ def mandel_geom(params, x, etc = []):
     midpt, width, rp_rs, b, flux = params
     ingress = orbit.limbtime(b, width, 1, rp_rs)[0]
     trpars = np.array([midpt, width, rp_rs**2, ingress, ingress, flux])
-    return mandelecl(trpars, x)
+    return mc.mandelecl(trpars, x)
 
 def mandelecl_orbit(params, x, etc = []):
     """
@@ -1574,8 +1574,8 @@ def mandelecl_orbit(params, x, etc = []):
     ecldur, becl, ecllimb, midpt = orbit.scaled_eclipse(e, omega, trdur, rp_rs, btr)
     trpars = np.array([0, trdur, rp_rs**2, trlimb, trlimb, flux])
     eclpars = np.array([midpt, ecldur, ecldepth, ecllimb, ecllimb, flux])
-    eclipse = mandelecl(eclpars, x)
-    transit = mandelecl(trpars, x)
+    eclipse = mc.mandelecl(eclpars, x)
+    transit = mc.mandelecl(trpars, x)
     return eclipse*transit/flux
 
 #no
@@ -1634,7 +1634,7 @@ def not0risingexp(params, x, etc=[]):
 #   x0par = np.array([a, b, c])
 #  This should not be passed as a numpy array
    x0par = [a, b, c]
-   x0    = risingexp(x0par, m)
+   x0    = mc.risingexp(x0par, m)
    
    return ne.evaluate('goal*(1 - exp(-m*(x - x0)))')
 #no
