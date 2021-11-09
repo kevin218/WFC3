@@ -452,7 +452,7 @@ def w7Restore(filedir='.', topdir=None, idl=False):
 
 #RUN p8tables
 def p8tables(ev=None, filedir='.', topdir=None, idl=False, eclphase=0.5):
-    import p8tables as p8
+    from ..lib import p8tables as p8
     
     global numevents, nummodels
     if ev == None:
@@ -472,7 +472,7 @@ def p8tables(ev=None, filedir='.', topdir=None, idl=False, eclphase=0.5):
 
 #RUN p9figs
 def p9figs(ev=None, filedir='.', topdir=None, idl=False):
-    import p9figs as p9
+    from ..lib import p9figs as p9
     
     global numevents, nummodels, isinteractive
     if ev == None:
