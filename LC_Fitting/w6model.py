@@ -27,33 +27,18 @@
     Added DEMCz                     kevin   2014-08-21
 """
 
-from importlib import reload
 import numpy as np
 import matplotlib.pyplot as plt
 import mpl_toolkits.mplot3d as m3d
 import time, os, sys
 import scipy.optimize as op
 import scipy.interpolate as spi
-import python_models as mc
-#import models_c as mc
-reload(mc)
-import mcmc
-#reload(mcmc)
-import demc
-#reload(demc)
-import residperm
-#reload(residperm)
-import paramedit as pe
-#reload(pe)
-import readeventhdf
-import numexpr as ne
-import smoothing
-#reload(smoothing)
-import correlated_noise as cn
-import plots_HST as plots
-#reload(plots)
-import nasc
-#reload(nasc)
+from ..lib import mcmc, demc, residperm, readeventhdf, smoothing, nasc
+from ..lib import python_models as mc
+from ..lib import paramedit as pe
+from ..lib import numexpr as ne
+from ..lib import correlated_noise as cn
+from ..lib import plots_HST as plots
 
 """
  NAME:

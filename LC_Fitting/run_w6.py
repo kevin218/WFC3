@@ -32,9 +32,9 @@
 
 from __future__ import print_function
 import os, sys, copy
-import manageevent as me
 os.environ['OMP_NUM_THREADS']='6'
 sys.path.append('../')
+from ..lib import manageevent as me
 from run import *
 ancildir      = 'ancil/'
 modeldir      = 'ancil/modelparams/'
@@ -346,7 +346,7 @@ def w6Save(ev):
 
 #RESTORE SAVEFILE AFTER w6model
 def w6Restore(filedir='.', topdir=None, idl=False):
-    import np_unpickle as unpic #added
+    from ..lib import np_unpickle as unpic #added
     global numevents, nummodels
     '''
     if idl == False:
@@ -385,7 +385,7 @@ def w6Restore(filedir='.', topdir=None, idl=False):
 #RUN 7anal
 def w7anal(ev=None, filedir='.', topdir=None, idl=False, islak=True):
     import w7anal as w7
-    #reload(w7)
+    
     global numevents, nummodels, isinteractive
     if ev == None:
         ev = w6Restore(filedir, topdir, idl)
@@ -453,7 +453,7 @@ def w7Restore(filedir='.', topdir=None, idl=False):
 #RUN p8tables
 def p8tables(ev=None, filedir='.', topdir=None, idl=False, eclphase=0.5):
     import p8tables as p8
-    #reload(p8)
+    
     global numevents, nummodels
     if ev == None:
         ev = w7Restore(filedir, topdir, idl)
@@ -473,7 +473,7 @@ def p8tables(ev=None, filedir='.', topdir=None, idl=False, eclphase=0.5):
 #RUN p9figs
 def p9figs(ev=None, filedir='.', topdir=None, idl=False):
     import p9figs as p9
-    #reload(p9)
+    
     global numevents, nummodels, isinteractive
     if ev == None:
         ev = w7Restore(filedir, topdir, idl)
@@ -493,13 +493,13 @@ def p9figs(ev=None, filedir='.', topdir=None, idl=False):
         plt.show()
     return
 
+import numpy as np
+import matplotlib.pyplot as plt
 import _pickle as pickle
 #import cPickle as pickle
-import matplotlib.pyplot as plt
-import np_unpickle as unpic
-import numpy as np
-import printoutput, shutil
-import readeventhdf
+import shutil
+from ..lib import printoutput, readeventhdf
+from ..lib import np_unpickle as unpic
 sys.path.append(ancildir)
 sys.path.append('../'+ancildir)
 
