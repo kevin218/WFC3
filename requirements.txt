@@ -1,0 +1,9 @@
+numpy
+matplotlib
+scipy
+astropy
+# pyfits
+numexpr
+image_registration
+h5py
+pywavelets
