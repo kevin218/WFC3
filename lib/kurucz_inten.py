@@ -215,7 +215,7 @@ def interp2d(inten, grav, temp, wgrav, wtemp, log=None, kf=None):
             iinten[j,i] = spi.bisplev(wtemp[j], wgrav[j], tck) 
         
     if (log is not None):   
-      	iinten = exp(iinten)
+      	iinten = np.exp(iinten)
 
     return iinten
 
@@ -369,7 +369,7 @@ def interp(inten, grav, temp, wgrav, wtemp, log=None, kf=None):
       iinten[i] = interpolate.bisplev(wtemp, wgrav, tck)
    
    if (log is not None):   
-      iinten = exp(iinten)
+      iinten = np.exp(iinten)
    
    return iinten
 
