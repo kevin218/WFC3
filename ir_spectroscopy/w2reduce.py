@@ -3,14 +3,15 @@
 import warnings
 warnings.filterwarnings('ignore')
 import numpy as np
+import matplotlib.pyplot as plt
 import scipy.interpolate as spi
 from astropy.io import fits as pf
-import matplotlib.pyplot as plt
 import multiprocessing as mp
-import manageevent as me
-import sort_nicely as sn
-import time, os, sys, shutil, centroid, suntimecorr, utc_tt
-import hst_scan as hst
+import time, os, sys, shutil
+from ..lib import centroid, suntimecorr, utc_tt
+from ..lib import hst_scan as hst
+from ..lib import manageevent as me
+from ..lib import sort_nicely as sn
 from importlib import reload
 reload(hst)
 
@@ -514,7 +515,7 @@ def reduceWFC3(eventname, eventdir, madVariable=False, madVarSet=False, isplots=
 
     #Outlier rejection of sky background along time axis
     print("Performing background outlier rejection...")
-    import sigrej, optspex
+    from ..lib import sigrej, optspex
     for p in range(2):
         iscan   = np.where(ev.scandir == p)[0]
         if len(iscan) > 0:

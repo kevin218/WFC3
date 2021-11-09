@@ -1,12 +1,13 @@
 #! /usr/bin/env python
 
 import numpy as np
-import scipy as sp
-import pyfits as pf
 import matplotlib.pyplot as plt
+import scipy as sp
+# import pyfits as pf
 import multiprocessing as mp
-import manageevent as me
-import time, optspex, sys
+import time, sys
+from ..lib import manageevent as me
+from ..lib import optspex
 
 # WFC3 Data Reduction Pipeline
 # Written by Kevin B. Stevenson in June of 2012

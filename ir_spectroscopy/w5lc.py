@@ -1,15 +1,14 @@
 #! /usr/bin/env python
 
 import numpy as np
-import scipy.interpolate as spi
 import matplotlib.pyplot as plt
-import manageevent as me
-import sys, time, smooth
-import hst_scan as hst
+import scipy.interpolate as spi
 import scipy.ndimage.interpolation as spni
 import imp
-#reload(smooth)
-#reload(hst)
+import sys, time
+from ..lib import smooth
+from ..lib import manageevent as me
+from ..lib import hst_scan as hst
 
 def lcWFC3(eventname, eventdir, nchan, madVariable, madVarSet, wmin=1.125, wmax=1.65, expand=1, smooth_len=None, correctDrift=True, isplots=True):
     '''

@@ -1,14 +1,16 @@
 #! /usr/bin/env python
 
 import numpy as np
-import scipy as sp
-from astropy.io import fits
 import matplotlib.pyplot as plt
+import sys
+import scipy as sp
 import scipy.interpolate as spi
-import manageevent as me
-import getldparam as gld
-import sys, limbdark
-from integrate import *
+from astropy.io import fits
+from ..lib import manageevent as me
+from ..lib import getldparam as gld
+from ..lib import limbdark
+
+from ..lib import integrate
 
 # Calculate limb-darkening coefficients using Phoenix data
 def limbDarkening(filename, wavelow, wavehi, specwave=None, spectrum=None, n_param=4, n_plot=False, stellarmodel='phoenix'):
@@ -56,10 +58,10 @@ def limbDarkening(filename, wavelow, wavehi, specwave=None, spectrum=None, n_par
             # Weight intensities according to the spectrum
             spline      = spi.UnivariateSpline(specwave, spectrum)
             newspectrum = spline(wave)
-            intbottom   = integrate(specwave, spectrum)
+            intbottom   = integrate.integrate(specwave, spectrum)
             sum_int     = np.zeros(n_mu)
             for i in range(n_mu):
-                inttop     = integrate(wave, intensity[i]/intensity[-1]*newspectrum)
+                inttop     = integrate.integrate(wave, intensity[i]/intensity[-1]*newspectrum)
                 sum_int[i] = inttop / intbottom
         else:
             # Sum intensities at each mu
@@ -127,7 +129,7 @@ def limbDarkening(filename, wavelow, wavehi, specwave=None, spectrum=None, n_par
             model = limbdark.nl(mu, coeffs)
         else:
             print('WARNING: ' + str(n_param) + ' parameter models are not supported.')
-            coeffs = np.zeros(n_params)
+            coeffs = np.zeros(n_param)
             model  = np.zeros(n_mu)
 
         if n_plot != False:
