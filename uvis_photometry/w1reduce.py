@@ -5,10 +5,12 @@ import scipy.interpolate as spi
 from astropy.io import fits
 import matplotlib.pyplot as plt
 import multiprocessing as mp
-import manageevent as me
-import sort_nicely as sn
-import time, optspex, sys, os, shutil, centroid, suntimecorr, utc_tt
-import hst_scan as hst
+import time, sys, os, shutil
+from ..lib import manageevent as me
+from ..lib import sort_nicely as sn
+from ..lib import hst_scan as hst
+from ..lib import optspex, centroid, suntimecorr, utc_tt
+
 #NOTE: hst_scan works for stare mode when using ima files
 #import hst
 import scipy.ndimage.interpolation as spni

@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
 import numpy as np
-import scipy.interpolate as spi
 import matplotlib.pyplot as plt
-import manageevent as me
-import sys, time
-import hst_scan as hst
+import scipy.interpolate as spi
 import scipy.ndimage.interpolation as spni
 from astropy.io import fits
+import sys, time
+from ..lib import hst_scan as hst
+from ..lib import manageevent as me
 
 # w3 is for light curve extraction
 #   It produces both white light (nchan=1) and spectroscopic (nchan>1) light curves
