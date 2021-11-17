@@ -4,6 +4,8 @@ scipy
 astropy
 # pyfits
 numexpr
-image_registration
+FITS_tools
+pytest
+#image_registration
 h5py
 pywavelets
