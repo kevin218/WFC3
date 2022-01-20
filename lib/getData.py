@@ -65,11 +65,12 @@ def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', 
         with pyfits.open(file) as hdul:
             filt = hdul[0].header['FILTER']
             scan = hdul[0].header['SCAN_TYP']
-        if filt == sciFil and scan == 'C':
+        if (filt == sciFil) and (scan == 'C'):
             science.append(file)
-        elif filt == imgFil:
+        elif (filt == imgFil) and (scan == 'N'):
             images.append(file)
-        if scan != 'C':
+            cals.append(file)
+        else:
             cals.append(file)
 
     masterPath = f"{sortPath}/{target}-{pid}"
@@ -98,6 +99,6 @@ def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', 
     return f"{sortPath}{target}-{pid}"
 
 # fire functionality lets you run this from either a jupyter notebook, another .py file, or the command line
-# python getData.py Desert* HAT-P-2 16194 G141 F126' --fileSearch=ima.fits --local=~/supportData --sortPath=~/supportData
+# python getData.py Desert* HAT-P-2 16194 G141 F126N --fileSearch=ima.fits --local=~/supportData --sortPath=~/supportData
 if __name__ == '__main__':
     fire.Fire(getData)
