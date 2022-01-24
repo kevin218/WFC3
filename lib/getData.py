@@ -90,7 +90,7 @@ def getData (target, pid, fileSearch='ima.fits', local='.', sortPath='.'):
     # make directImg list, checks if file exists first, does nothing if it does
     if not os.path.exists('directImg.txt'):
         directImg = [file.split('/')[-1] for file in images]
-        np.savetxt('directImg.txt', directImg, fmt='%s')
+        np.savetxt(f'{target}-{pid}-directImg.txt', directImg, fmt='%s')
 
     return f"{sortPath}/{target}-{pid}"
 
