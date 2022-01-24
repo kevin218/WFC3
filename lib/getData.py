@@ -6,24 +6,19 @@ import numpy as np
 import astroquery.mast as mast
 import astropy.io.fits as pyfits
 
-def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', sortPath='.'):
+def getData (target, pid, fileSearch='ima.fits', local='.', sortPath='.'):
     """
     Description
     ----------
-    Downloads data from MAST for a given pi, target, and proposal id, and sorts into directories for WFC3.
+    Downloads data from MAST for a given target, and proposal id, and sorts into 
+    directories for WFC3 based on whether they are spectroscopically scanned images or not.
 
     Parameters
     ----------
-    pi: string
-        Name of pi, wild cards are allowed
     target: string
         Name of target star
     pid: string
         Proposal id number.
-    sciFil: string
-        Filter used for science observations
-    imgFil: string
-        Filter used for direct images (0th order spectra)
     fileSearch: string (optional)
         Name subsearch for data files. Defaults to ima.fits
     local: string (optional)
@@ -33,19 +28,20 @@ def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', 
 
     Returns
     -------
-    None, but makes lots of files.
+    Image directory path.
 
     Warning
     -------
-    This was intended to download scan files, and so hard coded to sort for SCAN_TYP='C'.
+    This was intended to download scan files, and so hard coded to search for 
+    OBSTYPE='SPECTROSCOPIC' vs 'IMAGING' and sort by SCAN_TYP='C'.
     Will duplicate files so you don't redownload data. Watch your hard disk space. 
 
     """
     local = os.path.expanduser(local)
     sortPath = os.path.expanduser(sortPath)
 
-    # find all observations associated with a target in a given pi's proposal
-    obs_table = mast.Observations.query_criteria(proposal_pi=pi, target_name=target, proposal_id=int(pid))
+    # find all observations associated with a target in a given proposal
+    obs_table = mast.Observations.query_criteria(target_name=target, proposal_id=int(pid))
 
     # get a list of associated data products
     data_products_by_obs = mast.Observations.get_product_list(obs_table)
@@ -63,11 +59,11 @@ def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', 
     science = []
     for file in manifest['Local Path']:
         with pyfits.open(file) as hdul:
-            filt = hdul[0].header['FILTER']
+            obsType = hdul[0].header['OBSTYPE']
             scan = hdul[0].header['SCAN_TYP']
-        if (filt == sciFil) and (scan == 'C'):
+        if (obsType == 'SPECTROSCOPIC') and (scan == 'C'):
             science.append(file)
-        elif (filt == imgFil) and (scan == 'N'):
+        elif (obsType == 'IMAGING') and (scan == 'N'):
             images.append(file)
             cals.append(file)
         else:
@@ -96,9 +92,9 @@ def getData (pi, target, pid, sciFil, imgFil, fileSearch='ima.fits', local='.', 
         directImg = [file.split('/')[-1] for file in images]
         np.savetxt('directImg.txt', directImg, fmt='%s')
 
-    return f"{sortPath}{target}-{pid}"
+    return f"{sortPath}/{target}-{pid}"
 
 # fire functionality lets you run this from either a jupyter notebook, another .py file, or the command line
-# python getData.py Desert* HAT-P-2 16194 G141 F126N --fileSearch=ima.fits --local=~/supportData --sortPath=~/supportData
+# python getData.py HAT-P-2 16194 --fileSearch=ima.fits --local=~/supportData --sortPath=~/supportData
 if __name__ == '__main__':
     fire.Fire(getData)
