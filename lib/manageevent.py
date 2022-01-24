@@ -149,7 +149,7 @@ def loadevent(filename, load=[], loadfilename=None):
   event = pickle.load(handle)
   handle.close()
   
-  if loadfilename == None:
+  if loadfilename is None:
     loadfilename = filename
 
   if load != []:

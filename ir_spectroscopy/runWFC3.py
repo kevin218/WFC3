@@ -2,7 +2,7 @@
 
 import numpy as np
 import scipy as sp
-import pyfits as pf
+import astropy.io.fits as pf
 import matplotlib.pyplot as plt
 import multiprocessing as mp
 import manageevent as me
@@ -18,6 +18,9 @@ import w5lc as w5
 
 from importlib import reload
 reload(w2)
+
+# is None
+# is None
 
 eventname = 'kt011bph2'
 eventdir   = '2021-01-05-w2'

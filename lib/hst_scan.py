@@ -549,7 +549,7 @@ def calc_slitshift(wavegrid, xrng, refwave=None, width=3, deg=2):
     for i in range(n_spec):
         ny, nx    = wavegrid[i].shape
         loc     = np.zeros(ny)
-        if refwave == None:
+        if refwave is None:
             refwave = np.mean(wavegrid[i])
         # Interpolate to find location of reference wavelength
         for h in range(ny):

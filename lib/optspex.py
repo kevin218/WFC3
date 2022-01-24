@@ -41,7 +41,7 @@ def fitbg(dataim, mask, x1, x2, deg=1, threshold=5, isrotate=False, isplots=Fals
         submask = np.concatenate((  mask[:,    :x1[0]].T,  mask[:,x2[0]+1:nx].T)).T
         subdata = np.concatenate((dataim[:,    :x1[0]].T,dataim[:,x2[0]+1:nx].T)).T
         bg      = np.zeros((ny,nx)) + np.median(subdata[np.where(submask)])
-    elif deg == None :
+    elif deg is None :
         # No background subtraction
         bg      = np.zeros((ny,nx))
     else:
@@ -157,8 +157,8 @@ def fitbg2(dataim, mask, bgmask, deg=1, threshold=5, isrotate=False, isplots=Fal
     mask2   = mask*bgmask
     if deg < 0:
         # Calculate median background of entire frame
-        bg  += np.median(data[np.where(mask2)])
-    elif deg == None :
+        bg  += np.median(dataim[np.where(mask2)])
+    elif deg is None :
         # No background subtraction
         pass
     else:
@@ -480,7 +480,7 @@ def profile_gauss(subdata, mask, threshold=10, guess=None, isplots=False):
         # Set initial guess if none given
         guess = [ny/10.,np.argmax(dataslice),dataslice.max()]
         while (nobadpixels == False) and (iternum < maxiter):
-            #if guess == None:
+            #if guess is None:
                 #guess = g.old_gaussianguess(dataslice, np.arange(ny), mask=submask[:,i])
             # Fit Gaussian to each column
             if sum(submask[:,i]) >= 3:
@@ -510,7 +510,7 @@ def profile_gauss(subdata, mask, threshold=10, guess=None, isplots=False):
             # Mask data point if > threshold
             if stdevs[loc] > threshold:
                 # Check for bad fit, possibly due to a bad pixel
-                if i > 0 and (err == None or abs(params[0]) < abs(0.2*guess[0])):
+                if i > 0 and (err is None or abs(params[0]) < abs(0.2*guess[0])):
                     #print(i, params)
                     # Remove brightest pixel within region of fit
                     loc = params[1]-3 + np.argmax(dataslice[params[1]-3:params[1]+4])

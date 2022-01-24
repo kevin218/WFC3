@@ -73,7 +73,7 @@ def hiloerr(data, value = None, conf = 0.34134475):
 
    import numpy as np
 
-   if value == None:   
+   if value is None:   
       value = np.median(data)
    
    sdat  = np.unique(data)      # sorted, unique values
@@ -95,7 +95,7 @@ def hiloerr2D(data, value = None, conf = 0.34134475,axis=0):
     import numpy as np
     axis1 = axis
     axis2 = (axis+1)%2
-    if value == None:   
+    if value is None:   
         value = np.median(data,axis=axis1)
 
     sdat    = np.sort(data,axis=axis1)      # sorted values

@@ -10,9 +10,9 @@ import time
 #from univ import c
 #from splinterp import splinterp
 import scipy.interpolate as si
-rundir = '/home/kevin/Documents/esp01/ancil/leapseconds/'
+#rundir = '/home/kevin/Documents/esp01/ancil/leapseconds/'
 
-def leapdates():
+def leapdates(rundir):
 	'''Generates an array of leap second dates which
 	are automatically updated every six months.	
 	Uses local leap second file, but retrieves a leap 
@@ -82,10 +82,10 @@ def leapseconds(jd_utc, dates):
 		tt_tai = 32.184
 		return tt_tai + utc_tai
 
-def utc_tt(jd_utc):
+def utc_tt(jd_utc, leapdir):
 		'''Converts UTC Julian dates to Terrestrial Time (TT).
 		jd_utc	=	 (array-like) UTC Julian date'''
-		dates = leapdates()
+		dates = leapdates(leapdir)
 		if len(jd_utc) > 1:
 				dt = np.zeros(len(jd_utc))
 				for i in range(len(jd_utc)):

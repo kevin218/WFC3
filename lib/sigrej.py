@@ -118,11 +118,11 @@ print(y)
     nsig  = 1
     sigma = [sigma]
 
-  if mask == None:
+  if mask is None:
     mask = np.ones(dims, bool)
 
   # defining estsig makes the logic below easier
-  #if estsig == None:
+  #if estsig is None:
   #  estsig = - np.ones(nsig)
 
   # Return parameters:
@@ -140,7 +140,7 @@ print(y)
   # Iterations
   for iter in np.arange(nsig):
     
-    if estsig == None:
+    if estsig is None:
     #else:
       # note: ival is slicing
       ival[1,iter], ival[0,iter] = msd.medstddev(data, mask, axis=axis,
