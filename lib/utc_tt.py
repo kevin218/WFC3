@@ -29,7 +29,8 @@ def leapdates(rundir):
 		ntpepoch = 2208988800
 		if time.time()+ ntpepoch > expiration:
 			print("Leap-second file expired.	Retrieving new file.")
-			nist = urllib.urlopen('ftp://utcnist.colorado.edu/pub/leap-seconds.list')
+			#nist = urllib.urlopen('ftp://utcnist.colorado.edu/pub/leap-seconds.list')
+			nist = urllib.request.urlopen('ftp://ftp.boulder.nist.gov/pub/time/leap-seconds.list')
 			doc = nist.read()
 			nist.close()
 			newexp = doc.split('#@')[1].split('\n')[0][1:]
