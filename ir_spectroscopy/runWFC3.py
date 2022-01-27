@@ -2,7 +2,7 @@
 
 import numpy as np
 import scipy as sp
-import pyfits as pf
+import astropy.io.fits as pf
 import matplotlib.pyplot as plt
 import multiprocessing as mp
 import manageevent as me

@@ -83,20 +83,20 @@ def normlc(event, fit, fignum, savefile=None, istitle=True, j=0, interclip=None)
     
 # Trace plots
 def trace(event, fit, fignum, savefile=None, allparams=None, parname=None, iparams=None, stepsize=None, istitle=True):
-    if stepsize == None:
+    if stepsize is None:
         try:
             stepsize = event.params.stepsize
         except:
             stepsize = 10
-    if allparams == None:
+    if allparams is None:
         allparams = fit.allparams
-    if parname == None:
+    if parname is None:
         parname   = fit.parname
-    if iparams == None:
+    if iparams is None:
         nonfixedpars = fit.nonfixedpars
     else:
         nonfixedpars = range(allparams.shape[0])
-        if parname == None:
+        if parname is None:
             parname   = np.array(fit.parname)[iparams]
     plt.figure(fignum, figsize=(8,8))
     plt.clf()
@@ -126,20 +126,20 @@ def trace(event, fit, fignum, savefile=None, allparams=None, parname=None, ipara
 
 # Autocorrelation plots of trace values
 def autocorr(event, fit, fignum, savefile=None, allparams=None, parname=None, iparams=None, stepsize=None, istitle=True):
-    if stepsize == None:
+    if stepsize is None:
         try:
             stepsize = event.params.stepsize
         except:
             stepsize = 10
-    if allparams == None:
+    if allparams is None:
         allparams = fit.allparams
-    if parname == None:
+    if parname is None:
         parname   = fit.parname
-    if iparams == None:
+    if iparams is None:
         nonfixedpars = fit.nonfixedpars
     else:
         nonfixedpars = range(allparams.shape[0])
-        if parname == None:
+        if parname is None:
             parname   = np.array(fit.parname)[iparams]
     plt.figure(fignum, figsize=(8,8))
     plt.clf()
@@ -169,16 +169,16 @@ def autocorr(event, fit, fignum, savefile=None, allparams=None, parname=None, ip
 
 # Correlation plots with 2D histograms
 def hist2d(event, fit, fignum, savefile=None, allparams=None, parname=None, iparams=None, stepsize=None, istitle=True):
-    if stepsize == None:
+    if stepsize is None:
         try:
             stepsize = event.params.stepsize
         except:
             stepsize = 10
-    if allparams == None:
+    if allparams is None:
         allparams = fit.allparams
-    if parname == None:
+    if parname is None:
         parname   = fit.parname
-    if iparams == None:
+    if iparams is None:
         nonfixedpars = fit.nonfixedpars
     else:
         nonfixedpars = range(allparams.shape[0])
@@ -244,20 +244,20 @@ def hist2d(event, fit, fignum, savefile=None, allparams=None, parname=None, ipar
 
 # 1D histogram plots
 def histograms(event, fit, fignum, savefile=None, allparams=None, parname=None, iparams=None, stepsize=None, istitle=True):
-    if stepsize == None:
+    if stepsize is None:
         try:
             stepsize = event.params.stepsize
         except:
             stepsize = 10
-    if allparams == None:
+    if allparams is None:
         allparams = fit.allparams
-    if parname == None:
+    if parname is None:
         parname   = fit.parname
-    if iparams == None:
+    if iparams is None:
         nonfixedpars = fit.nonfixedpars
     else:
         nonfixedpars = range(allparams.shape[0])
-        if parname == None:
+        if parname is None:
             parname   = np.array(fit.parname)[iparams]
     j          = 1
     numfp      = len(nonfixedpars)
@@ -417,9 +417,9 @@ def pointingHist(event, fit, fignum, savefile=None, istitle=True, minnumpts=1):
 
 # Plot RMS vs. bin size looking for time-correlated noise
 def rmsplot(event, fit, fignum, savefile=None, istitle=True, stderr=None, normfactor=None):
-    if stderr == None:
+    if stderr is None:
         stderr = fit.stderr
-    if normfactor == None:
+    if normfactor is None:
         normfactor = stderr[0]
     plt.rcParams.update({'legend.fontsize':11})
     plt.figure(fignum, figsize=(8,6))
@@ -441,9 +441,9 @@ def rmsplot(event, fit, fignum, savefile=None, istitle=True, stderr=None, normfa
 
 # Plot RMS vs. bin size (with RMS uncertainties) looking for time-correlated noise
 def rmsploterr(event, fit, fignum, savefile=None, istitle=True, stderr=None, normfactor=None):
-    if stderr == None:
+    if stderr is None:
         stderr = fit.stderr
-    if normfactor == None:
+    if normfactor is None:
         normfactor = stderr[0]
     plt.rcParams.update({'legend.fontsize':11})
     plt.figure(fignum, figsize=(8,6))

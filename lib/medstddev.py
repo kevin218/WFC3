@@ -90,7 +90,7 @@ def medstddev1d(data, mask=None, medi=False):
   retmed = medi
 
   # defult mask, all good:
-  if mask==None:
+  if mask is None:
     mask = np.ones(len(data))
   # mask invalid values:
   finite = np.isfinite(data)
@@ -216,7 +216,7 @@ def medstddev(data, mask=None, medi=False, axis=0):
   # get shape
   shape = np.shape(data)
   # default mask, all good.
-  if mask == None:
+  if mask is None:
     mask = np.ones(shape)
 
   # base case: 1D

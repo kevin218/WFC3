@@ -68,11 +68,11 @@ def ctrguess(data, mask=None, guess=None):
 				 ccampo@gmail.com
 	'''
 	
-	if mask == None:
+	if mask is None:
 		mask = np.ones(np.shape(data))
 	
 	# Center position guess, looking the max value
-	if guess == None:
+	if guess is None:
 		gcenter = np.unravel_index(np.argmax(data*mask), np.shape(data))
 	else:
 		gcenter = int(guess[0]), int(guess[1])
@@ -130,7 +130,7 @@ def ctrgauss(data, guess=None, mask=None, indarr=None, trim=None):
 	2009-10-30	Christopher J. Campo, UCF (ccampo@gmail.com)
 				Initial version.
 	'''
-	if guess == None:
+	if guess is None:
 		fitguess = ctrguess(data, mask, guess)
 		guess = fitguess[1]
 	
@@ -151,7 +151,7 @@ def ctrgauss(data, guess=None, mask=None, indarr=None, trim=None):
 	
 	fitguess =	((1.0, 1.0), loc, image[loc[0],loc[1]])
 	
-	if	indarr == None:
+	if	indarr is None:
 		indarr = np.indices(np.shape(image))
 	
 	# Fit the gaussian:

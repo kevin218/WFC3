@@ -193,7 +193,7 @@ def gaussian(x, width=1.0, center=0.0, height=None, bgpars=[0.0, 0.0, 0.0]):
   r2pi = np.sqrt(2. * np.pi)
 
   # Define height if needed:
-  if height == None:
+  if height is None:
     height = np.product(1. / (width * r2pi))
   ponent = 0.0
 
@@ -276,7 +276,7 @@ def old_gaussianguess(y, x=None, mask=None):
   if y.ndim != 1 :
     raise(ArrayShapeError, "y must be 1D, for now.")
 
-  if x == None :
+  if x is None :
     x = np.indices(y.shape)[0]
   else:
     if x.shape == (1, y.shape):
@@ -286,7 +286,7 @@ def old_gaussianguess(y, x=None, mask=None):
       raise(ArrayShapeError, "x must have same shape as y (and be sorted).")
       
   # Default mask:
-  if mask == None:
+  if mask is None:
     mask = np.ones(np.shape(y))
 
   ymax  = np.amax(y*mask)
@@ -318,11 +318,11 @@ def old_gaussianguess(y, x=None, mask=None):
 def gaussianguess(data, mask=None, yxguess=None):
 
   # Default mask:
-  if mask == None:
+  if mask is None:
     mask = np.ones(np.shape(data))
 
   # Center position guess, looking the max value:
-  if yxguess == None:
+  if yxguess is None:
     gcenter = np.unravel_index(np.argmax(data*mask), np.shape(data))
   else:
     gcenter = np.around(yxguess[0]), np.around(yxguess[1])
@@ -548,7 +548,7 @@ def fitgaussian(y, x=None, bgpars=None, fitbg=0, guess=None,
                          pcubillos@fulbrightmail.org
   """
 
-  if x == None:
+  if x is None:
     x = np.indices(np.shape(y))
   else:
     if (   ((x.ndim == 1) and (x.shape     != y.shape))
@@ -556,11 +556,11 @@ def fitgaussian(y, x=None, bgpars=None, fitbg=0, guess=None,
       raise(ValueError, "x must give coordinates of points in y.")
 
   # Default mask: all good
-  if mask == None:
+  if mask is None:
     mask    = np.ones(np.shape(y))
 
   # Default weights: no weighting
-  if weights == None:
+  if weights is None:
     weights = np.ones(np.shape(y))
 
   # Mask the gaussian if requested:
@@ -575,12 +575,12 @@ def fitgaussian(y, x=None, bgpars=None, fitbg=0, guess=None,
   # Estimate the median of the image:
   medbg = np.median(y[np.where(medmask)])
 
-  if bgpars == None:
+  if bgpars is None:
     bgpars = [0.0, 0.0, medbg]
 
   # get a guess if not provided
-  if guess == None:
-    if yxguess == None:
+  if guess is None:
+    if yxguess is None:
       guess = gaussianguess(y-medbg, mask=mask)
     else:
       guess = gaussianguess(y-medbg, mask=mask, yxguess=yxguess)
@@ -724,7 +724,7 @@ def gaussians(x, param):
       center += np.zeros(ndim)
     if type(width) != np.ndarray:
       width  += np.zeros(ndim)
-    if height == None:
+    if height is None:
       height = np.product(1.0 / (width * np.sqrt(2.0 * np.pi)))
     ponent = 0.0
     for i in np.arange(ndim):
@@ -759,7 +759,7 @@ def fitgaussians(y, x=None, guess=None, sigma=1.0):
         tuple.
 
   """
-  if x == None:
+  if x is None:
     x = np.indices(y.shape)[0]
   else:
     if (   ((x.ndim == 1) and (x.shape     != y.shape))
@@ -778,7 +778,7 @@ def fitgaussians(y, x=None, guess=None, sigma=1.0):
   sigma = p[-1]
   p   = np.reshape(p  [0:-1], (ngauss, len(p  [0:-1])/ngauss))
 
-  iscov = 0 if cov==None else 1
+  iscov = 0 if cov is None else 1
   extra = (p, sigma, iscov, cov, info, mesg)
 
   return np.array(p[0,0:2]), extra

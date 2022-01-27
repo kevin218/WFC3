@@ -67,7 +67,7 @@ def reduceWFC3(eventname, isplots=False):
     # Flat
     '''
     ev.flat_list = []
-    if ev.flatfile == None:
+    if ev.flatfile is None:
         for i in range(ev.flatstart,ev.flatend):
             ev.flat_list.append(ev.loc_cal + ev.filebase + str(i).zfill(4) + ".fits")
     else:
@@ -77,7 +77,7 @@ def reduceWFC3(eventname, isplots=False):
         handle.close()
     # Bias
     ev.bias_list = []
-    if ev.biasfile == None:
+    if ev.biasfile is None:
         for i in range(ev.biasstart,ev.biasend):
             ev.bias_list.append(ev.loc_cal + ev.filebase + str(i).zfill(4) + ".fits")
     else:
@@ -87,7 +87,7 @@ def reduceWFC3(eventname, isplots=False):
         handle.close()
     # wavelenth
     ev.wave_list = []
-    if ev.wavefile == None:
+    if ev.wavefile is None:
         for i in range(ev.wavestart,ev.waveend):
             ev.wave_list.append(ev.loc_cal + ev.filebase + str(i).zfill(4) + ".fits")
     else:
@@ -98,7 +98,7 @@ def reduceWFC3(eventname, isplots=False):
     '''
     # Object
     ev.obj_list = []   #Do not rename ev.obj_list!
-    if ev.objfile == None:
+    if ev.objfile is None:
         #Retrieve files within specified range
         for i in range(ev.objstart,ev.objend):
             ev.obj_list.append(ev.loc_sci + ev.filebase + str(i).zfill(4) + ".fits")
@@ -256,7 +256,7 @@ def reduceWFC3(eventname, isplots=False):
     bias_mhdr    = None
     
     # Make list of master flat field frames
-    if ev.flatfile == None:
+    if ev.flatfile is None:
         print('No flat frames found.')
         flat_master = np.ones((ev.n_img,ev.n_spec,ny,nx))
         mask        = np.ones((ev.n_img,ev.n_spec,ny,nx))

@@ -92,7 +92,7 @@ def reduceWFC3(eventname, eventdir, madVariable=False, madVarSet=False, isplots=
 
     # Object
     ev.obj_list = []   #Do not rename ev.obj_list!
-    if ev.objfile == None:
+    if ev.objfile is None:
         #Retrieve files within specified range
         for i in range(ev.objstart,ev.objend):
             ev.obj_list.append(ev.loc_sci + ev.filebase + str(i).zfill(4) + ".fits")
@@ -237,7 +237,7 @@ def reduceWFC3(eventname, eventdir, madVariable=False, madVarSet=False, isplots=
     # Make list of master flat field frames
     subflat     = np.ones((ev.n_img,ev.n_spec,subny,subnx))
     flatmask    = np.ones((ev.n_img,ev.n_spec,subny,subnx))
-    if ev.flatfile == None:
+    if ev.flatfile is None:
         print('No flat frames found.')
         flat_hdr    = None
         flat_mhdr   = None
@@ -309,7 +309,7 @@ def reduceWFC3(eventname, eventdir, madVariable=False, madVarSet=False, isplots=
     # Make list of master flat field frames
     subflat     = np.ones((ev.n_files,subny,subnx))
     flatmask    = np.ones((ev.n_files,subny,subnx))
-    if ev.flatfile == None:
+    if ev.flatfile is None:
         print('No flat frames found.')
         flat_hdr    = None
         flat_mhdr   = None

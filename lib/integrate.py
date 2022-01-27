@@ -34,10 +34,10 @@ def integrate(x0, y0, a=None, b=None):
     
 	import numpy as np
     
-	if a == None:
+	if a is None:
 	    a = min(x0)
     
-	if b == None:
+	if b is None:
 	    b = max(x0)
     
 	region = np.where(np.bitwise_and(x0 >= a, x0 <= b))

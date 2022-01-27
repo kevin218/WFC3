@@ -10,9 +10,9 @@ import time
 #from univ import c
 #from splinterp import splinterp
 import scipy.interpolate as si
-rundir = '/home/kevin/Documents/esp01/ancil/leapseconds/'
+#rundir = '/home/kevin/Documents/esp01/ancil/leapseconds/'
 
-def leapdates():
+def leapdates(rundir):
 	'''Generates an array of leap second dates which
 	are automatically updated every six months.	
 	Uses local leap second file, but retrieves a leap 
@@ -29,7 +29,8 @@ def leapdates():
 		ntpepoch = 2208988800
 		if time.time()+ ntpepoch > expiration:
 			print("Leap-second file expired.	Retrieving new file.")
-			nist = urllib.urlopen('ftp://utcnist.colorado.edu/pub/leap-seconds.list')
+			#nist = urllib.urlopen('ftp://utcnist.colorado.edu/pub/leap-seconds.list')
+			nist = urllib.request.urlopen('ftp://ftp.boulder.nist.gov/pub/time/leap-seconds.list')
 			doc = nist.read()
 			nist.close()
 			newexp = doc.split('#@')[1].split('\n')[0][1:]
@@ -82,10 +83,10 @@ def leapseconds(jd_utc, dates):
 		tt_tai = 32.184
 		return tt_tai + utc_tai
 
-def utc_tt(jd_utc):
+def utc_tt(jd_utc, leapdir):
 		'''Converts UTC Julian dates to Terrestrial Time (TT).
 		jd_utc	=	 (array-like) UTC Julian date'''
-		dates = leapdates()
+		dates = leapdates(leapdir)
 		if len(jd_utc) > 1:
 				dt = np.zeros(len(jd_utc))
 				for i in range(len(jd_utc)):

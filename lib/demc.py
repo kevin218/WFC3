@@ -19,9 +19,9 @@ def calcModel(nchains, functype, myfuncs, pedit, nextp, iortholist, funcx, cummo
     ymodels     = np.ones((nchains, fit[j].nobj))
     noisepars   = [[] for i in range(nchains)]
     k           = 0
-    if chains == None:
+    if chains is None:
         chains = range(nchains)
-    if iblock == None:
+    if iblock is None:
         iblock = range(cummodels[j],cummodels[j+1])
     for i in range(cummodels[j],cummodels[j+1]):
         if iblock.__contains__(i):
@@ -57,7 +57,7 @@ def calcChisq(y, sigma, ymodels, nchains, nextp, j, noisepars, isrednoise, wavel
     '''
     Compute chi-squared with priors.
     '''
-    if chains == None:
+    if chains is None:
         chains = range(nchains)
     chi2 = np.zeros(nchains)
     for n in chains:
@@ -173,7 +173,7 @@ def demc_block(y, pars, pmin, pmax, stepsize, numit, sigma, numparams, cummodels
     print("Number of free parameters per block:")
     print(numbp)
     numa        = np.zeros(numblocks)
-    if gamma == None:
+    if gamma is None:
         gamma   = 2.38/np.sqrt(2.*numbp)
     print("gamma:")
     print(gamma)
@@ -290,7 +290,7 @@ def calcChi2(nchains, functype, myfuncs, pedit, nextp, iortholist, funcx, cummod
     ymodels     = np.ones((nchains, fit[j].nobj))
     noisepars   = [[] for i in range(nchains)]
     k           = 0
-    if chains == None:
+    if chains is None:
         chains = range(nchains)
     for i in range(cummodels[j],cummodels[j+1]):
         for n in chains:
@@ -415,7 +415,7 @@ def demc(y, pars, pmin, pmax, stepsize, numit, sigma, numparams, cummodels, func
     numfree         = len(ifree)
     print("Number of free parameters:")
     print(len(ifree))
-    if gamma == None:
+    if gamma is None:
         gamma     = 2.38/np.sqrt(2*numfree)
     print('Gamma = ' + str(gamma))
     
@@ -723,7 +723,7 @@ def demcz(y, pars, stdpburnin, pmin, pmax, stepsize, numit, sigma, numparams, cu
     noisefunc       = None
     numfree         = len(ifree)
     print("Number of free parameters: " + str(len(ifree)))
-    if gamma == None:
+    if gamma is None:
         gamma     = 2.38/np.sqrt(2*numfree)
     print('Gamma = ' + str(gamma))
     
@@ -1115,7 +1115,7 @@ def demc_old(y, pars, pmin, pmax, stepsize, numit, sigma, numparams, cummodels, 
     numevents       = len(fit)
     intsteps        = np.min((numit/5,1e5))
     isrednoise      = False
-    if gamma == None:
+    if gamma is None:
         gamma     = 2.38/np.sqrt(2*nump)
     print('Gamma = ' + str(gamma))
     
