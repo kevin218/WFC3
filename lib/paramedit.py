@@ -15,7 +15,7 @@ def init_models():
             ["trnlldsp",     "trspmid   \trprs      \tcosi      \tars       \ttrspf     \ttrspp     \ttrspc1    \ttrspc2    \ttrspc3    \ttrspc4\n", np.zeros((4, 10))],
             ["trnlldsp2",    "trspmid2  \trprs2     \tcosi2     \tars2      \ttrspf2    \ttrspp2    \ttrspc12   \ttrspc22   \ttrspc32   \ttrspc42\n", np.zeros((4, 10))],
             ["mandelgeom",   "midpt\twidth\tRp/Rs\tb\tflux\n", np.zeros((4, 5))],
-	    ["mandelorbit",  "e\tomega\ti\tperiod\trplanet\trstar\tmstar\tecldepth\tflux\n", np.zeros((4, 9))],
+	        ["mandelorbit",  "e\tomega\ti\tperiod\trplanet\trstar\tmstar\tecldepth\tflux\n", np.zeros((4, 9))],
             ["batman_trquad","t0        \tbtrprs    \tperiod    \tars       \tcosi       \tecc       \tomega     \tu1     \tu2\n", np.zeros((4,9))],
             ["batman_ecl",   "eclmidpt  \tfpfs      \tberprs    \tperiod      \tars       \tcosi       \tecc       \tomega\n", np.zeros((4,8))],
             #RAMPS
@@ -23,6 +23,8 @@ def init_models():
             ["hook",         "hgoal     \thr0       \thr1       \thpm\n", np.zeros((4, 4))],
             ["hook2",        "h2goal    \th2r0      \th2r1      \th2pm      \th2per\n", np.zeros((4, 5))],
             ["heqramp",      "heqt0     \theqr0     \theqr1     \theqr2     \theqr3     \theqpm     \theqper\n", np.zeros((4, 7))],
+            ["zhouramp",     "zhEs      \tzhEf      \tzhdEs     \tzhdEf     \tzhetas    \tzhetaf    \tzhEstot   \tzhEftot   \tzhtaus    \tzhtauf     \tzhflux\n", np.zeros((4, 11))],
+            ["recte",        "Es        \tEf        \tdEs       \tdEf       \tflux\n", np.zeros((4, 5))],
             ["seramp",       "segoal    \tser0      \tser1      \tsepm\n", np.zeros((4, 4))],
             ["selramp",      "selgoal   \tselr0     \tselr1     \tselr2     \tselt0     \tselpm\n", np.zeros((4, 6))],
             ["seqramp",      "seqgoal   \tseqr0     \tseqr1     \tseqr2     \tseqr3     \tseqt0     \tseqpm\n", np.zeros((4, 7))],

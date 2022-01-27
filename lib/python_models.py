@@ -429,6 +429,53 @@ def setupmodel(model, ind):
         myfuncs.append(mc.heqramp)
         saveext.append('heq')
         functype.append('ramp')
+    elif model[i] == 'zhouramp':
+              #DEFINE INDICES
+        ind.zhEs    = ind.size
+        ind.zhEf    = ind.size + 1
+        ind.zhdEs   = ind.size + 2
+        ind.zhdEf   = ind.size + 3
+        ind.zhetas  = ind.size + 4
+        ind.zhetaf  = ind.size + 5
+        ind.zhEstot = ind.size + 6
+        ind.zhEftot = ind.size + 7
+        ind.zhtaus  = ind.size + 8
+        ind.zhtauf  = ind.size + 9
+        ind.zhflux  = ind.size + 10
+        ind.size   += 11
+        #DEFINE NAMES
+        parname.insert(ind.zhEs,   'Zhou Ramp, Es')
+        parname.insert(ind.zhEf,   'Zhou Ramp, Ef')
+        parname.insert(ind.zhdEs,  'Zhou Ramp, dEs')
+        parname.insert(ind.zhdEf,  'Zhou Ramp, dEf')
+        parname.insert(ind.zhetas, 'Zhou Ramp, etas')
+        parname.insert(ind.zhetaf, 'Zhou Ramp, etaf')
+        parname.insert(ind.zhEstot,'Zhou Ramp, Estot')
+        parname.insert(ind.zhEftot,'Zhou Ramp, Eftot')
+        parname.insert(ind.zhtaus, 'Zhou Ramp, taus')
+        parname.insert(ind.zhtauf, 'Zhou Ramp, tauf')
+        parname.insert(ind.zhflux, 'Zhou Ramp, flux')
+        #DEFINE RAMP MODEL
+        myfuncs.append(mc.zhouramp)
+        saveext.append('zh')
+        functype.append('ramp')
+    elif model[i] == 'recte':
+        #DEFINE INDICES
+        ind.rctEs    = ind.size
+        ind.rctEf    = ind.size + 1
+        ind.rctdEs   = ind.size + 2
+        ind.rctdEf   = ind.size + 3
+        ind.rctflux  = ind.size + 4
+        ind.size   += 5
+        #DEFINE NAMES
+        parname.insert(ind.rctEs,   'Recte Ramp, Es')
+        parname.insert(ind.rctEf,   'Recte Ramp, Ef')
+        parname.insert(ind.rctdEs,  'Recte Ramp, dEs')
+        parname.insert(ind.rctflux, 'Recte Ramp, flux')
+        #DEFINE RAMP MODEL
+        myfuncs.append(mc.recte)
+        saveext.append('rct')
+        functype.append('ramp')
     elif model[i] == 'seramp':
         #DEFINE INDICES
         ind.segoal  = ind.size
