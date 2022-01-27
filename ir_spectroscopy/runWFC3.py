@@ -19,9 +19,6 @@ import w5lc as w5
 from importlib import reload
 reload(w2)
 
-# is None
-# is None
-
 eventname = 'kt011bph2'
 eventdir   = '2021-01-05-w2'
 
