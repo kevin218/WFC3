@@ -1392,6 +1392,22 @@ def setupmodel(model, ind):
         myfuncs.append(mc.spiderman_rock)
         saveext.append('spr')
         functype.append('sinusoidal')
+    elif model[i] == 'skewGauss':
+        #DEFINE INDICES
+        ind.k = ind.size
+        ind.loc = ind.size + 1
+        ind.scale = ind.size + 2
+        ind.amp1 = ind.size + 3
+        ind.size   += 4
+        #DEFINE NAMES
+        parname.insert(ind.k,  'k')
+        parname.insert(ind.loc,  'offset')
+        parname.insert(ind.scale,  'scale')
+        parname.insert(ind.amp1,  'amplitude')
+        #DEFINE RAMP MODEL
+        myfuncs.append(mc.skewGauss)
+        saveext.append('skg')
+        functype.append('sinusoidal')
     elif model[i] == 'gp_exp2':
         #DEFINE INDICES
         ind.gpexp2a  = ind.size
