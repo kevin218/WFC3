@@ -218,7 +218,7 @@ def hist2d(event, fit, fignum, savefile=None, allparams=None, parname=None, ipar
                 else:
                     a = plt.xticks(visible=False)
                 hist2d, xedges, yedges = np.histogram2d(allparams[k,0::stepsize],
-                                                        allparams[i,0::stepsize],20,normed=True)
+                                                        allparams[i,0::stepsize],20,density=True)
                 vmin = np.min(hist2d[np.where(hist2d > 0)])
                 #largerhist = np.zeros((22,22))
                 #largerhist[1:-1,1:-1] = hist2d
@@ -276,14 +276,14 @@ def histograms(event, fit, fignum, savefile=None, allparams=None, parname=None, 
     if istitle:
         a = plt.suptitle(event.eventname + ' Histograms', size=16)
     for i in nonfixedpars:
-        a = plt.subplot(np.ceil(numfp/3.),3,j)
+        a = plt.subplot(int(np.ceil(numfp/3.)),3,j)
         #if parname[i].startswith('System Flux'):
         #    a.xaxis.set_major_formatter(plt.matplotlib.ticker.FormatStrFormatter('%0.0f'))
         plt.xticks(size=12,rotation=90)
         plt.yticks(size=12)
         #plt.axvline(x=fit.meanp[i,0])
         plt.xlabel(parname[i], size=14)
-        a  = plt.hist(allparams[i,0::stepsize], 20, normed=False, label=str(fit.meanp[i,0]))
+        a  = plt.hist(allparams[i,0::stepsize], 20, label=str(fit.meanp[i,0]))
         j += 1
     plt.subplots_adjust(left=0.07,right=0.95,bottom=bottom,top=0.95,hspace=hspace,wspace=0.25)
     if savefile != None:
