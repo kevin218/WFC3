@@ -56,6 +56,7 @@ def init_models():
             ["spiderman_sph3",      "t0        \tper       \ta_abs     \tcosi       \tecc       \tw         \trp        \ta        \tp_u1       \tp_u2      \tT_s       \tl1        \tl2        \tdegree    \tla0        \tlo0       \tsph0    \tsph1    \tsph2        \tsph3     \tsph4     \tsph5     \tsph6     \tsph7     \tsph8     \tnpoints\n", np.zeros((4,26))],
             ["spiderman_rock",      "t0        \tper       \ta_abs     \tcosi       \tecc       \tw         \trp        \ta        \tp_u1       \tp_u2      \tT_s       \tl1        \tl2        \tinsol     \talbedo     \tredist     \tnpoints\n", np.zeros((4,17))],
             ["skewGauss",      "k        \tloc       \tscale     \tamp1\n", np.zeros((4,4))],
+            ["asymLorentzian",      "F0        \tc1       \tc2     \tc2     \tc3     \tc4\n", np.zeros((4,6))],
             #GAUSSIAN PROCESS
             ["gp_exp2",      "amp       \tscale     \tnsamp\n", np.zeros((4, 3))],
             #INSTRUMENTAL

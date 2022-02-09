@@ -1408,6 +1408,24 @@ def setupmodel(model, ind):
         myfuncs.append(mc.skewGauss)
         saveext.append('skg')
         functype.append('sinusoidal')
+    elif model[i] == 'asymLorentzian':
+        #DEFINE INDICES
+        ind.F0 = ind.size
+        ind.c1 = ind.size + 1
+        ind.c2 = ind.size + 2
+        ind.c3 = ind.size + 3
+        ind.c4 = ind.size + 4
+        ind.size += 5
+        #DEFINE NAMES
+        parname.insert(ind.F0,  'flux offset')
+        parname.insert(ind.c1,  'amplitude (kinda)')
+        parname.insert(ind.c2,  'time offset')
+        parname.insert(ind.c3,  'timescale of rise (kinda)')
+        parname.insert(ind.c4,  'timescale of fall (kinda)')
+        #DEFINE RAMP MODEL
+        myfuncs.append(mc.asymLorentzian)
+        saveext.append('aLor')
+        functype.append('sinusoidal')
     elif model[i] == 'gp_exp2':
         #DEFINE INDICES
         ind.gpexp2a  = ind.size
